@@ -31,7 +31,7 @@ def generate_track_dict(ID):
     for user in followings:
         user_id = str(user['id'])
         user_name = str(user['username'])
-        tracks = client.get('/users/'+user_id+'/favorites', limit=5)
+        tracks = client.get('/users/'+user_id+'/favorites', limit=10)
 
         for track in tracks: add_song_to_dict(track_dict, track, user_name)
     return track_dict; 
