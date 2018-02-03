@@ -38,20 +38,20 @@ class Engine:
         file = open(filename, "w", encoding='utf-8')
 
         # image header here
-        file.write('<header><img src = "'+imagename+'"></header>')
-        
+        file.write('<link rel="stylesheet" type="text/css" href="style.css"><style type="text/css"></style>\n')
+        file.write('<header><img src = "'+imagename+'"></header>\n')
+        file.write('<body>\n')
         for i in range(0,len(widget_list)):
             file.write(str(widget_list[i]))
             file.write('\n')
 
             # liked by here 
             users = str(" » ".join(track_list[i][2]))
-            liked_by = "LIKED BY: " + users; 
+            liked_by = "╚» LIKED BY: " + users; 
             
             file.write(liked_by)
-            file.write('<div></div>')
-            
-
+            file.write('\n')
+        file.write('</body>')
 
     def open_html_file(self, filename):
         webbrowser.open_new_tab(filename);
