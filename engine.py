@@ -1,7 +1,7 @@
 '''
 Created on Feb 2, 2018
 
-@author: Danny Le
+@authors: Danny Le, Jeffrey Pham, Kevon Nguyen 
 '''
 
 import soundcloud

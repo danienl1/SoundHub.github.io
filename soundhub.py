@@ -16,8 +16,8 @@ def id_to_username(ID):
     return user.username    
 
 def add_song_to_dict(track_dict, track, liked_by):
-    print(track.title)
-    
+    #print(track.title)
+    print('.',end='',flush=True)
     if track.id not in track_dict.keys():
         track_dict[track.id] = [1,[liked_by]]
     else:
@@ -26,14 +26,15 @@ def add_song_to_dict(track_dict, track, liked_by):
                 
 def generate_track_dict(ID):
     track_dict = dict()
-    followings = client.get('/users/'+ID+'/followings').obj["collection"]
+    followings = client.get('/users/'+ID+'/followings', limit=200).obj["collection"]
     
     for user in followings:
         user_id = str(user['id'])
         user_name = str(user['username'])
         tracks = client.get('/users/'+user_id+'/favorites', limit=10)
-
         for track in tracks: add_song_to_dict(track_dict, track, user_name)
+
+    print(">> extracted likes from", len(followings), "followings")
     return track_dict; 
 
 def generate_sorted_match_list(track_dict):
