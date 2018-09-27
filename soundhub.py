@@ -1,8 +1,10 @@
 from operator import itemgetter
+import sys
 import soundcloud
 
 
 client = soundcloud.Client(client_id="MgT8dvRJVcFR9fI5Szar82usLfSQdg3n")
+non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 
 def id_from_input():
     return str(username_to_id(input("enter soundcloud username: ")))
@@ -16,7 +18,8 @@ def id_to_username(ID):
     return user.username    
 
 def add_song_to_dict(track_dict, track, liked_by):
-    print(track.title)
+    title = track.title.translate(non_bmp_map)
+    print(title)
     
     if track.id not in track_dict.keys():
         track_dict[track.id] = [1,[liked_by]]
@@ -31,9 +34,10 @@ def generate_track_dict(ID):
     for user in followings:
         user_id = str(user['id'])
         user_name = str(user['username'])
-        tracks = client.get('/users/'+user_id+'/favorites', limit=5)
+        tracks = client.get('/users/'+user_id+'/favorites', limit=50)
 
-        for track in tracks: add_song_to_dict(track_dict, track, user_name)
+        for track in tracks:
+            add_song_to_dict(track_dict, track, user_name)
     return track_dict; 
 
 def generate_sorted_match_list(track_dict):

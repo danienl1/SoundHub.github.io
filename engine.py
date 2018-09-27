@@ -51,19 +51,20 @@ class Engine:
     
 if __name__ == '__main__':
 
-    ID = soundhub.id_from_input()
-    track_dict = soundhub.generate_track_dict(ID)
-    track_list = soundhub.generate_sorted_match_list(track_dict)
-    soundhub.print_list(track_list)
+        ID = soundhub.id_from_input()
+        track_dict = soundhub.generate_track_dict(ID)
+        track_list = soundhub.generate_sorted_match_list(track_dict)
+        soundhub.print_list(track_list)
 
-    new_list = []
-    for item in track_list:
-        new_list.append(item[0])
+        new_list = []
+        for item in track_list:
+            new_list.append(item[0])
 
-    sh = Engine()
-    html_list = sh.id_list_to_html_list(new_list)
+        sh = Engine()
+        html_list = sh.id_list_to_html_list(new_list)
 
-    filename = "result.html"
-    imagename = "logo.png"
-    sh.create_file_from_html_list(html_list,filename,imagename)
-    sh.open_html_file(filename)
+        filename = "result.html"
+        imagename = "logo.png"
+        sh.create_file_from_html_list(html_list,filename,imagename)
+        sh.open_html_file(filename)
+
