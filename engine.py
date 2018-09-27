@@ -1,7 +1,7 @@
 '''
 Created on Feb 2, 2018
 
-@author: Danny Le
+@authors: Danny Le, Jeffrey Pham, Kevon Nguyen 
 '''
 
 import soundcloud
@@ -34,16 +34,24 @@ class Engine:
             
         return html_list
             
-    def create_file_from_html_list(self,widget_list,filename,imagename):
-        file = open(filename, "w")
+    def create_file_from_html_list(self,widget_list,track_list,filename,imagename):
+        file = open(filename, "w", encoding='utf-8')
 
-        # write image header here
-        file.write('<header><img src = "'+imagename+'"></header>')
-        
-        for i in widget_list:
-            file.write(str(i))
+        # image header here
+        file.write('<link rel="stylesheet" type="text/css" href="style.css"><style type="text/css"></style>\n')
+        file.write('<header><img src = "'+imagename+'"></header>\n')
+        file.write('<body>\n')
+        for i in range(0,len(widget_list)):
+            file.write(str(widget_list[i]))
             file.write('\n')
-            # write: LIKED BY here 
+
+            # liked by here 
+            users = str(" » ".join(track_list[i][2]))
+            liked_by = "╚» LIKED BY: " + users; 
+            
+            file.write(liked_by)
+            file.write('\n')
+        file.write('</body>')
 
     def open_html_file(self, filename):
         webbrowser.open_new_tab(filename);
@@ -68,3 +76,10 @@ if __name__ == '__main__':
         sh.create_file_from_html_list(html_list,filename,imagename)
         sh.open_html_file(filename)
 
+<<<<<<< HEAD
+=======
+    filename = "result.html"
+    imagename = "logo.png"
+    sh.create_file_from_html_list(html_list,track_list,filename,imagename)
+    sh.open_html_file(filename)
+>>>>>>> 10659c64ea8ed4a13991782478e2f9c92a751dbd
