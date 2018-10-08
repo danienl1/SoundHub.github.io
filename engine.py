@@ -4,7 +4,7 @@ Created on Feb 2, 2018
 @authors: Danny Le, Jeffrey Pham, Kevon Nguyen 
 '''
 
-#23846cb411c0684200a1ede993077ef3f294554fxxFAF2
+corelogic_token = 23846cb411c0684200a1ede993077ef3f294554fxxFAF2
 import soundcloud
 import soundhub
 import webbrowser
