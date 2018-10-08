@@ -4,7 +4,7 @@ Created on Feb 2, 2018
 @authors: Danny Le, Jeffrey Pham, Kevon Nguyen 
 '''
 
-corelogic_token = 23846cb411c0684200a1ede993077ef3f294554fxxFAF2
+corelogic_token = "23846cb411c0684200a1ede993077ef3f294554fxxFAF2"
 import soundcloud
 import soundhub
 import webbrowser
@@ -83,4 +83,3 @@ if __name__ == '__main__':
     imagename = "logo.png"
     sh.create_file_from_html_list(html_list,track_list,filename,imagename)
     sh.open_html_file(filename)
->>>>>>> 10659c64ea8ed4a13991782478e2f9c92a751dbd
